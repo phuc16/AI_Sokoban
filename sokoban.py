@@ -21,7 +21,7 @@ def printInfo():
     print("* - box on dock (goal)")
     print("# - wall \n")
 
-    print("\n <Beginning state> \n")
+    print("\n <Init state> \n")
     for m in MAP:
         print(*m)
 
@@ -33,7 +33,6 @@ def readMap(inPut):
     for line in f:
         if len(line) > 1:
             MAP.append(list(line.strip()))
-
 
 def init():
     # extract all data to variable
@@ -218,7 +217,6 @@ def bfs(inPut):
             boxs, goals = actState[1].copy(), actState[2].copy() # get object of state
             moves = actState[3].copy()
             
-
             # if this state has not been visited, mark it visited and enqueue it
             if validMove(xNew, yNew, actState, direction(i)):
                 if isBox(xNew, yNew, actState[1]):
@@ -262,15 +260,21 @@ if __name__ == "__main__":
     print("Input list:\n")
     f = open("input/listInput.txt", "r")
     print(f.read())
-    f.close()
+
     level = input("Choose input: ")
-    if level == "7":
+    if level == "6":
+        print ("Mini Cosmos Level 6") 
+        inPut = "input/mini_6.txt"
+    elif level == "7":
         print ("Mini Cosmos Level 7") 
         inPut = "input/mini_7.txt"
 #   elif:
 
-    print("\nPress ENTER to start!")
+    print("\nPress ENTER to start finding solution!")
     keyboard.wait("enter")
 
     bfs(inPut)
+    print(f.read())
+    f.close()
+    
     gameAction()
