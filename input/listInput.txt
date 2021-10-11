@@ -9,3 +9,5 @@
 9.  Mini Cosmos Level 30 https://ksokoban.online/Mini%20Cosmos/30
 10. Mini Cosmos Level 40 https://ksokoban.online/Mini%20Cosmos/40
 11. Micro Cosmos Level 1 https://ksokoban.online/Micro%20Cosmos/1
+12. Micro Cosmos Level 2 https://ksokoban.online/Micro%20Cosmos/2
+13. Micro Cosmos Level 2 https://ksokoban.online/Micro%20Cosmos/3

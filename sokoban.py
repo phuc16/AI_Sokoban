@@ -2,6 +2,7 @@ from queue import Queue
 import sys, os
 import keyboard
 import time
+import datetime
 this_dir = sys.path[0]
 
 MAP = []
@@ -70,7 +71,7 @@ def direction(x):
     return ["up", "down", "left", "right"][x] # move
 
 def hashState(x, y, state):
-    # hash all box position
+    # hash box position
     boxs = tuple(state[1])
     return ((x, y), boxs)
 
@@ -111,7 +112,7 @@ def validMove(x, y, state, direction):
             return False
 
     if isBox(x, y, boxs):
-        # check if position is out of map
+        # check if next position is out of map
         if direction == "up" and x - 1 >= 0 and (isBox(x - 1, y, boxs) or MAP[x - 1][y] == "#"):
             return False
 
@@ -319,11 +320,19 @@ if __name__ == "__main__":
         link = "https://ksokoban.online/Micro%20Cosmos/1"
         print ("\nMicro Cosmos Level 1\n") 
         inPut = "input/micro_1.txt"
+    elif level == "12":
+        link = "https://ksokoban.online/Micro%20Cosmos/2"
+        print ("\nMicro Cosmos Level 2\n") 
+        inPut = "input/micro_2.txt"
+    elif level == "13":
+        link = "https://ksokoban.online/Micro%20Cosmos/3"
+        print ("\nMicro Cosmos Level 3\n") 
+        inPut = "input/micro_3.txt"
 #   elif:
 
     startTime = time.time()
     bfs(inPut)
-    print("\nTime cost:", time.time() - startTime, "second \n")
+    print("\nTime cost:", datetime.timedelta(seconds = time.time() - startTime), "\n")
+
     print(link)
-    
     gameAction()
