@@ -14,4 +14,7 @@
 14. Micro Cosmos Level 4 https://ksokoban.online/Micro%20Cosmos/4
 15. Micro Cosmos Level 5 https://ksokoban.online/Micro%20Cosmos/5
 16. Micro Cosmos Level 6 https://ksokoban.online/Micro%20Cosmos/6
-17. Micro Cosmos Level 6 https://ksokoban.online/Micro%20Cosmos/7
+17. Micro Cosmos Level 7 https://ksokoban.online/Micro%20Cosmos/7
+18. Micro Cosmos Level 8 https://ksokoban.online/Micro%20Cosmos/8
+19. Micro Cosmos Level 9 https://ksokoban.online/Micro%20Cosmos/9
+20. Micro Cosmos Level 10 https://ksokoban.online/Micro%20Cosmos/10
