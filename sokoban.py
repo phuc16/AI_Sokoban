@@ -248,11 +248,13 @@ def gameAction():
     for step in s[0].split():
         steps.append(step)
 
-    print("\nOpen game from the link above and press SPACE to start auto solve!")
+    print("\nOpen game from the above link and press SPACE to run auto solver!")
     keyboard.wait("space")
 
-    # press key from list of move
+    
     print("\nGAME SOLVING...")
+
+    # press key from list of move
     for move in steps:
         if move == "up":
             keyboard.press("up")
@@ -269,6 +271,7 @@ def gameAction():
         time.sleep(0.25)
 
     print("\nGAME SOLVED!")
+    f.close()
 
 if __name__ == "__main__":
     print("Input list:\n")
@@ -328,6 +331,22 @@ if __name__ == "__main__":
         link = "https://ksokoban.online/Micro%20Cosmos/3"
         print ("\nMicro Cosmos Level 3\n") 
         inPut = "input/micro_3.txt"
+    elif level == "14":
+        link = "https://ksokoban.online/Micro%20Cosmos/4"
+        print ("\nMicro Cosmos Level 4\n") 
+        inPut = "input/micro_4.txt"
+    elif level == "15":
+        link = "https://ksokoban.online/Micro%20Cosmos/5"
+        print ("\nMicro Cosmos Level 5\n") 
+        inPut = "input/micro_5.txt"
+    elif level == "16":
+        link = "https://ksokoban.online/Micro%20Cosmos/6"
+        print ("\nMicro Cosmos Level 6\n") 
+        inPut = "input/micro_6.txt"
+    elif level == "17":
+        link = "https://ksokoban.online/Micro%20Cosmos/7"
+        print ("\nMicro Cosmos Level 7\n") 
+        inPut = "input/micro_7.txt"
 #   elif:
 
     startTime = time.time()
