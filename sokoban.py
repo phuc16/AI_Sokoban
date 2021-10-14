@@ -1,12 +1,13 @@
 from queue import Queue
 import sys, os
 import keyboard
+import heapq
 import time
 import datetime
-this_dir = sys.path[0]
 
 MAP = []
 ALL_STATES = set()
+
 dx = [-1, 1, 0, 0] 
 dy = [0, 0, -1, 1] # move: up, down, left, right
 
@@ -239,6 +240,81 @@ def bfs(inPut):
                 newState = ((xNew, yNew), boxs, goals, moves)
                 Q.put(newState)
 
+def heuristic(state):
+    min_dist = 1e9
+
+    #position of player
+    player_x, player_y = state[0][0], state[0][1]
+    
+    #boxs
+    chests = state[1]
+    for c in chests:
+        for g in goals:
+            #calculate distance = (player->box) + (box->goals) 
+            act_dist = abs(player_x - c[0]) + abs(player_y - c[1])
+            act_dist += abs(c[0] - g[0]) + abs(c[1] - g[1])
+            min_dist = min(min_dist, act_dist)
+
+    return min_dist + len(state[3])
+
+
+
+def aStar(inPut):
+    global N, M, pos, boxs, goals
+
+    #init map
+    readMap(inPut)
+    printInfo()
+    N, M = len(MAP), len(MAP[0])
+    print(M, N)
+    init()
+    Q = []  # priority queue
+    #init state
+    state = (pos, boxs, goals, [])
+    heapq.heappush(Q, (heuristic(state), state))
+
+
+    ALL_STATES.add(hashState(pos[0], pos[1], state))
+
+    while len(Q) > 0:
+      
+        act_state = heapq.heappop(Q)  
+        act_state = act_state[1]
+        # print_map(act_state)
+
+
+        #check complete game
+        if win(act_state[2]):
+            print('\nSOLUTION FOUND!!\n')
+            printMap(act_state)
+            printAns(act_state)
+            break
+        
+
+        s_pos = act_state[0]
+        for i in range(4):
+
+            #update new position 
+            new_x = s_pos[0] + dx[i]
+            new_y = s_pos[1] + dy[i]
+
+            #get objects
+            boxs, goals = act_state[1].copy(), act_state[2].copy()
+            moves = act_state[3].copy()
+            
+
+            if validMove(new_x, new_y, act_state, direction(i)):
+                
+                #check if new position is box => move box
+                if isBox(new_x, new_y, act_state[1]):
+                    moveBox(new_x, new_y, i, boxs, goals)
+
+                moves.append(i)
+
+                #update new state
+                new_state = ((new_x, new_y), boxs, goals, moves)
+                #push new state to Q
+                heapq.heappush(Q, (heuristic(new_state), new_state))
 
 
 def gameAction():
@@ -250,7 +326,6 @@ def gameAction():
 
     print("\nOpen game from the above link and press SPACE to run auto solver!")
     keyboard.wait("space")
-
     
     print("\nGAME SOLVING...")
 
@@ -347,10 +422,25 @@ if __name__ == "__main__":
         link = "https://ksokoban.online/Micro%20Cosmos/7"
         print ("\nMicro Cosmos Level 7\n") 
         inPut = "input/micro_7.txt"
+    else:
+        print("\nPLEASE CHOOSE A VALID INPUT!")
+        sys.exit()
 #   elif:
 
+    print("Algorithm list:")
+    print ("1. Breadth-first search")
+    print ("2. A star")
+
+    algorithm = input("\nChoose algorithm: ")
+
     startTime = time.time()
-    bfs(inPut)
+    if algorithm == "1":
+        bfs(inPut)
+    elif algorithm == "2":
+        aStar(inPut)
+    else:
+        print("\nPLEASE CHOOSE A VALID ALGORITHM!")
+        sys.exit()
     print("\nTime cost:", datetime.timedelta(seconds = time.time() - startTime), "\n")
 
     print(link)
