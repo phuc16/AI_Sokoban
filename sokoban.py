@@ -266,7 +266,7 @@ def aStar(inPut):
     readMap(inPut)
     printInfo()
     N, M = len(MAP), len(MAP[0])
-    print(M, N)
+    #print(M, N)
     init()
     Q = []  # priority queue
     #init state
@@ -422,10 +422,23 @@ if __name__ == "__main__":
         link = "https://ksokoban.online/Micro%20Cosmos/7"
         print ("\nMicro Cosmos Level 7\n") 
         inPut = "input/micro_7.txt"
+    elif level == "18":
+        link = "https://ksokoban.online/Micro%20Cosmos/8"
+        print ("\nMicro Cosmos Level 8\n") 
+        inPut = "input/micro_8.txt"
+    elif level == "19":
+        link = "https://ksokoban.online/Micro%20Cosmos/9"
+        print ("\nMicro Cosmos Level 9\n") 
+        inPut = "input/micro_9.txt"
+    elif level == "20":
+        link = "https://ksokoban.online/Micro%20Cosmos/10"
+        print ("\nMicro Cosmos Level 10\n") 
+        inPut = "input/micro_10.txt"
+#   elif:
     else:
         print("\nPLEASE CHOOSE A VALID INPUT!")
         sys.exit()
-#   elif:
+
 
     print("Algorithm list:")
     print ("1. Breadth-first search")
