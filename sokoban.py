@@ -441,6 +441,7 @@ if __name__ == "__main__":
     else:
         print("\nPLEASE CHOOSE A VALID ALGORITHM!")
         sys.exit()
+        
     print("\nTime cost:", datetime.timedelta(seconds = time.time() - startTime), "\n")
 
     print(link)
